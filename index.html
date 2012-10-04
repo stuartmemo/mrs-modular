@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Mrs. Modular</title>
+        <link rel="stylesheet" href="master.css"/>
+        <script src="//use.typekit.net/iij2wcl.js"></script>
+        <script>try{Typekit.load();}catch(e){}</script>
+    </head>
+    <body>
+        <div id="container">
+            <h1 class="tk-orgovan-rounded-web">Mrs. Modular</h1>
+            <div class="hold-me">
+                <ul>
+                    <li><label>Attack</label></li>
+                    <li><label>Sustain</label></li>
+                    <li><label>Volume</label></li>
+                    <li><label>Osc #1</label></li>
+                    <li><label>Osc #2</label></li>
+                </ul>
+                <ul>
+                    <li>
+                        <input type="text" id="attack" value="0" data-max="100" data-width="80" data-fgColor="#F2ED63" data-bgColor="#A4A2C4"/>
+                    </li>
+                    <li>
+                        <input type="text" id="sustain" value="30" data-max="100" data-width="80" data-fgColor="#F2ED63" data-bgColor="#A4A2C4"/>
+                    </li>
+                    <li>
+                        <input type="text" id="volume" value="30" data-max="100" data-width="80" data-fgColor="#F2ED63" data-bgColor="#A4A2C4"/>
+                    </li>
+                    <li>
+                        <select name="osc1-shape-selector">
+                            <option value="0" default>Sine</option>
+                            <option value="1" default>Square</option>
+                            <option value="2" default>Sawtooth</option>
+                            <option value="3" default>Triangle</option>
+                        </select>
+                    </li>
+                    <li>
+                        <select name="osc2-shape-selector">
+                            <option value="0" default>Sine</option>
+                            <option value="1" default>Square</option>
+                            <option value="2" default>Sawtooth</option>
+                            <option value="3" default>Triangle</option>
+                        </select>
+                    </li>
+                </ul>
+                <ul style="clear: none">
+                    <li>
+                        <label>Samples</label>
+                        <select name="sample-selector">
+                            <option value="none" default>None</option>
+                            <option value="yo">Yo!</option>
+                            <option value="hey">Hey!</option>
+                            <option value="jsconf">JS Conf!</option>
+                        </select>
+                    </li>
+                </ul>
+                <div id="keyboard"></div>
+            </div>
+        </div>
+        <script src="raphael-min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+        <script src="jquery.kontrol.js"></script>
+        <script src="/abbey-load/abbeyload.js"></script>
+        <script src="qwerty-hancock.js"></script>
+        <script src="synth.js"></script>
+        <script>
+            $(function () {
+                $('#attack').dial();
+                $('#sustain').dial();
+                $('#volume').dial();
+            });
+            </script>
+    </body>
+</html>
