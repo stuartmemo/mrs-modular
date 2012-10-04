@@ -85,7 +85,7 @@
 
 	})();
 
-	mySynth = new Synth('Stuart');
+	mySynth = new Synth('Mrs Modular');
 
 	keyboard = qwertyHancock('keyboard', 620, 150, 3, 'A3', 'white', 'black', '#f3e939');
 
