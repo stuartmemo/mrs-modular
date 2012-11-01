@@ -3,47 +3,21 @@
 
 	Synth = (function() {
 		var context = new webkitAudioContext(),
-			nodes = [],
-            samples = {};
-
-        var assets = new AbbeyLoad([{
-            'yo': 'yo.ogg'
-        }], function (buffs) {
-                samples.yo = buffs.yo;
-            }
-        );
+			nodes = [];
 
 		function Synth(name) {
 			this.name = name;
             this.params = {
                 attack: 0.1,
                 sustain: 0.6,
-                sample: null,
                 volume: 0.5
             }
 		}
-
-        var playAudioFile= function (buffer, frequency) {
-            var source = context.createBufferSource(),
-                lowestFreq = 130,
-                highestFreq = 350;
-
-            var pbRate = 3 - (highestFreq / frequency);
-            source.playbackRate.value = pbRate;
-            source.buffer = buffer;
-            source.connect(context.destination);
-            source.noteOn(0);
-        }
 
     	Synth.prototype.playNote = function(frequency) {
             var gainNode = context.createGainNode(),
                 osc1 = context.createOscillator(),
                 osc2 = context.createOscillator();
-
-            if (this.params.sample) {
-                playAudioFile(this.params.sample, frequency);
-                return;
-            }
 
     		osc1.frequency.value = frequency;
             osc2.frequency.value = frequency;
@@ -77,24 +51,15 @@
             })
 		};
 
-        Synth.prototype.loadSample = function (sample) {
-            this.params.sample = samples[sample];  
-        }
-
 		return Synth;
 
 	})();
 
 	mySynth = new Synth('Mrs Modular');
-
 	keyboard = qwertyHancock('keyboard', 620, 150, 3, 'A3', 'white', 'black', '#f3e939');
 
     document.getElementById('attack').addEventListener('change', function () {
         mySynth.params.attack = this.value;
-    });
-
-    document.getElementsByName('sample-selector')[0].addEventListener('change', function () {
-        mySynth.loadSample(this.value);
     });
 
 	keyboard.keyDown(function(note, frequency) {
